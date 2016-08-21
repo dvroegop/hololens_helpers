@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpatialAudioSampler", "SpatialAudioSampler\SpatialAudioSampler.csproj", "{2A4DDD6A-9EFA-4F11-869E-A93F0164D327}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SpatialSoundPlayer", "SpatialSoundPlayer\SpatialSoundPlayer.vcxproj", "{38AA0D7D-E591-4E33-ABD2-5432EB805617}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A4DDD6A-9EFA-4F11-869E-A93F0164D327}.Debug|ARM.ActiveCfg = Debug|x86
+		{2A4DDD6A-9EFA-4F11-869E-A93F0164D327}.Debug|x64.ActiveCfg = Debug|x86
+		{2A4DDD6A-9EFA-4F11-869E-A93F0164D327}.Debug|x86.ActiveCfg = Debug|x86
+		{2A4DDD6A-9EFA-4F11-869E-A93F0164D327}.Debug|x86.Build.0 = Debug|x86
+		{2A4DDD6A-9EFA-4F11-869E-A93F0164D327}.Debug|x86.Deploy.0 = Debug|x86
+		{2A4DDD6A-9EFA-4F11-869E-A93F0164D327}.Release|ARM.ActiveCfg = Release|x86
+		{2A4DDD6A-9EFA-4F11-869E-A93F0164D327}.Release|x64.ActiveCfg = Release|x86
+		{2A4DDD6A-9EFA-4F11-869E-A93F0164D327}.Release|x86.ActiveCfg = Release|x86
+		{2A4DDD6A-9EFA-4F11-869E-A93F0164D327}.Release|x86.Build.0 = Release|x86
+		{2A4DDD6A-9EFA-4F11-869E-A93F0164D327}.Release|x86.Deploy.0 = Release|x86
+		{38AA0D7D-E591-4E33-ABD2-5432EB805617}.Debug|ARM.ActiveCfg = Debug|ARM
+		{38AA0D7D-E591-4E33-ABD2-5432EB805617}.Debug|ARM.Build.0 = Debug|ARM
+		{38AA0D7D-E591-4E33-ABD2-5432EB805617}.Debug|x64.ActiveCfg = Debug|x64
+		{38AA0D7D-E591-4E33-ABD2-5432EB805617}.Debug|x64.Build.0 = Debug|x64
+		{38AA0D7D-E591-4E33-ABD2-5432EB805617}.Debug|x86.ActiveCfg = Debug|Win32
+		{38AA0D7D-E591-4E33-ABD2-5432EB805617}.Debug|x86.Build.0 = Debug|Win32
+		{38AA0D7D-E591-4E33-ABD2-5432EB805617}.Release|ARM.ActiveCfg = Release|ARM
+		{38AA0D7D-E591-4E33-ABD2-5432EB805617}.Release|ARM.Build.0 = Release|ARM
+		{38AA0D7D-E591-4E33-ABD2-5432EB805617}.Release|x64.ActiveCfg = Release|x64
+		{38AA0D7D-E591-4E33-ABD2-5432EB805617}.Release|x64.Build.0 = Release|x64
+		{38AA0D7D-E591-4E33-ABD2-5432EB805617}.Release|x86.ActiveCfg = Release|Win32
+		{38AA0D7D-E591-4E33-ABD2-5432EB805617}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
