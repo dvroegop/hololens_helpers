@@ -18,7 +18,7 @@ using SpatialAudioSampler.Common;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using System.Collections.Generic;
-
+using SpatialSoundPlayer;
 #if DRAW_SAMPLE_CONTENT
 using SpatialAudioSampler.Content;
 #endif
@@ -53,7 +53,8 @@ namespace SpatialAudioSampler
 
         // A reference frame attached to the holographic camera.
         SpatialStationaryFrameOfReference   referenceFrame;
-        
+        private SpatialAudioPlayer _audioPlayer;
+
         /// <summary>
         /// Loads and initializes application assets when the application is loaded.
         /// </summary>
@@ -78,6 +79,9 @@ namespace SpatialAudioSampler
 #if DRAW_SAMPLE_CONTENT
             // Initialize the sample hologram.
             spinningCubeRenderer = new SpinningCubeRenderer(deviceResources);
+
+            _audioPlayer = new SpatialSoundPlayer.SpatialAudioPlayer();
+            _audioPlayer.PlaySoundFromResource("ms-appx:///Assets/ping.wav");
 
             spatialInputHandler = new SpatialInputHandler();
 #endif

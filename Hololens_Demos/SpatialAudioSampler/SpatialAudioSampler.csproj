@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{2a4ddd6a-9efa-4f11-869e-a93f0164d327}</ProjectGuid>
+    <ProjectGuid>{2A4DDD6A-9EFA-4F11-869E-A93F0164D327}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SpatialAudioSampler</RootNamespace>
@@ -16,9 +16,7 @@
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    
     <PackageCertificateKeyFile>SpatialAudioSampler_TemporaryKey.pfx</PackageCertificateKeyFile>
-    
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
@@ -66,11 +64,10 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    
     <None Include="SpatialAudioSampler_TemporaryKey.pfx" />
-    
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\ping.wav" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -87,6 +84,12 @@
     <PixelShader Include="Content\Shaders\PixelShader.hlsl" />
     <VertexShader Include="Content\Shaders\VertexShader.hlsl" />
     <VertexShader Include="Content\Shaders\VPRTVertexShader.hlsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SpatialSoundPlayer\SpatialSoundPlayer.vcxproj">
+      <Project>{38aa0d7d-e591-4e33-abd2-5432eb805617}</Project>
+      <Name>SpatialSoundPlayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
