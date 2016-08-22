@@ -12,36 +12,32 @@ namespace SpatialSoundPlayer {
 	{
 	}
 
-	IAsyncAction^ SpatialAudioPlayer::PlaySoundFromResource(String^ resourceName)
-	{		
+	IAsyncAction^ SpatialAudioPlayer::PlaySoundFromResourceAsync(String^ resourceName)
+	{
 		return create_async([this, resourceName]
 		{
-			this->InternalPlaySound(resourceName);
+			InternalPlaySound(resourceName);
 		});
+
+		//return nullptr;
 	}
 
 	void SpatialAudioPlayer::InternalPlaySound(String^ resourceName) {
 
-		auto res = this->LoadData(resourceName);
-
-		if (res == nullptr) {
-			// Error
-		}
+		this->LoadData(resourceName);
 
 	}
 
-	IBuffer^ SpatialAudioPlayer::LoadData(String^ resourceName)
+	task<IBuffer^> SpatialAudioPlayer::LoadData(String^ resourceName) 
 	{
 		auto uri = ref new Windows::Foundation::Uri(resourceName);
 
-		IAsyncOperation<StorageFile^>^ sourceFile = StorageFile::GetFileFromApplicationUriAsync(uri);
-		auto xx = create_task(sourceFile);
-		xx.then([](StorageFile^ file) -> IAsyncOperation<IBuffer^>^ {
-			return FileIO::ReadBufferAsync(file);
-		}).then([](IBuffer^ buffer) -> IBuffer^ {
-			return buffer;
-		});
+		auto file = co_await StorageFile::GetFileFromApplicationUriAsync(uri);
+		////if (nullptr == file)
+		////	return nullptr;
 
+		//IBuffer^ buffer = await FileIO::ReadBufferAsync(file);
+		////return buffer;
 		return nullptr;
 	}
 }

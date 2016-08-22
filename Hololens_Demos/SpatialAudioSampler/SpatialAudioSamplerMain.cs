@@ -68,7 +68,7 @@ namespace SpatialAudioSampler
             this.deviceResources.DeviceRestored += this.OnDeviceRestored;
         }
 
-        public void SetHolographicSpace(HolographicSpace holographicSpace)
+        public async void SetHolographicSpace(HolographicSpace holographicSpace)
         {
             this.holographicSpace = holographicSpace;
 
@@ -81,7 +81,9 @@ namespace SpatialAudioSampler
             spinningCubeRenderer = new SpinningCubeRenderer(deviceResources);
 
             _audioPlayer = new SpatialSoundPlayer.SpatialAudioPlayer();
-            _audioPlayer.PlaySoundFromResource("ms-appx:///Assets/ping.wav");
+            await _audioPlayer.PlaySoundFromResourceAsync("ms-appx:///Assets/ping.wav");
+            
+
 
             spatialInputHandler = new SpatialInputHandler();
 #endif

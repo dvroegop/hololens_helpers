@@ -1,19 +1,22 @@
 #pragma once
 
+#include <experimental\resumable>
+#include <pplawait.h>
+
 using namespace Windows::Storage::Streams;
 using namespace Platform;
-
+using namespace concurrency;
 
 namespace SpatialSoundPlayer {
 	public ref class SpatialAudioPlayer sealed
 	{
 	public:
 		SpatialAudioPlayer();
-
-		IAsyncAction^ PlaySoundFromResource(String^ resourceName);
+		
+		Windows::Foundation::IAsyncAction^ PlaySoundFromResourceAsync(String^ resourceName);
 
 	private:
-		IBuffer^ LoadData(String^ resourceName);
+		task<IBuffer^> LoadData(String^ resourceName);
 
 		void InternalPlaySound(String^ resourceName);
 	};

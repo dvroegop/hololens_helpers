@@ -43,7 +43,7 @@
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <None Include="project.json" />
-    <None Include="TestKey.snk" />
+    <None Include="TempKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SpatialAudioSamplerMain.cs" />
@@ -98,7 +98,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>TestKey.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>TempKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <Import Project="ms.fxcompile.targets" />
