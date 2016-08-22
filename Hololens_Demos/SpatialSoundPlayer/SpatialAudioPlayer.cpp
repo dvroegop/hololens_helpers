@@ -2,26 +2,46 @@
 #include "SpatialAudioPlayer.h"
 #include <comutil.h>
 
+using namespace concurrency;
+using namespace Windows::Foundation;
+using namespace Windows::Storage;
+
 namespace SpatialSoundPlayer {
 
 	SpatialAudioPlayer::SpatialAudioPlayer()
 	{
 	}
 
-	void SpatialAudioPlayer::PlaySoundFromResource(String^ resourceName)
-	{
-		HRESULT hr;
-		IBuffer fileHandle;;
-		if (FAILED(hr = this->LoadData(resourceName, fileHandle))) {
-			throw Platform::Exception::CreateException(hr);
-		}
+	IAsyncAction^ SpatialAudioPlayer::PlaySoundFromResource(String^ resourceName)
+	{		
+		return create_async([this, resourceName]
+		{
+			this->InternalPlaySound(resourceName);
+		});
+	}
 
+	void SpatialAudioPlayer::InternalPlaySound(String^ resourceName) {
+
+		auto res = this->LoadData(resourceName);
+
+		if (res == nullptr) {
+			// Error
+		}
 
 	}
 
-	HRESULT SpatialAudioPlayer::LoadData(String^ resourceName, IBuffer^ result)
+	IBuffer^ SpatialAudioPlayer::LoadData(String^ resourceName)
 	{
+		auto uri = ref new Windows::Foundation::Uri(resourceName);
 
-		return S_OK;
+		IAsyncOperation<StorageFile^>^ sourceFile = StorageFile::GetFileFromApplicationUriAsync(uri);
+		auto xx = create_task(sourceFile);
+		xx.then([](StorageFile^ file) -> IAsyncOperation<IBuffer^>^ {
+			return FileIO::ReadBufferAsync(file);
+		}).then([](IBuffer^ buffer) -> IBuffer^ {
+			return buffer;
+		});
+
+		return nullptr;
 	}
 }

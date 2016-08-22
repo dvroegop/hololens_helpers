@@ -14,5 +14,6 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="SpatialAudioPlayer.h" />
     <ClInclude Include="DataStructures\AudioData.h" />
+    <ClInclude Include="DataStructures\AudioSample.h" />
   </ItemGroup>
 </Project>

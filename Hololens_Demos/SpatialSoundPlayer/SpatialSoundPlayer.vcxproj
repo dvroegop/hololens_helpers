@@ -208,6 +208,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="DataStructures\AudioData.h" />
+    <ClInclude Include="DataStructures\AudioSample.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="SpatialAudioPlayer.h" />
   </ItemGroup>
