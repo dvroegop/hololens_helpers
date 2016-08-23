@@ -1,6 +1,7 @@
 #pragma once
 namespace SpatialSoundPlayer {
-	struct AudioSample {
+	class AudioSample {
 		Windows::Storage::Streams::IBuffer^ buffer;
+
 	};
 }

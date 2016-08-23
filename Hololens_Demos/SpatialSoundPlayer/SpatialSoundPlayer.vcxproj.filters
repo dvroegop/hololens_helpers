@@ -9,11 +9,14 @@
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="SpatialAudioPlayer.cpp" />
+    <ClCompile Include="RiffReader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="SpatialAudioPlayer.h" />
     <ClInclude Include="DataStructures\AudioData.h" />
     <ClInclude Include="DataStructures\AudioSample.h" />
+    <ClInclude Include="RiffReader.h" />
+    <ClInclude Include="DataStructures\ChunkInfo.h" />
   </ItemGroup>
 </Project>

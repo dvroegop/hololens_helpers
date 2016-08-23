@@ -4,4 +4,4 @@
 #include <ppltasks.h>
 #include <x3daudio.h>
 #include <mmreg.h>
-#include <ppltasks.h>
+#include <Xaudio2.h>
