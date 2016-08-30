@@ -1,8 +1,11 @@
 #pragma once
 
-#include <experimental\resumable>
+#include "pch.h"
 #include <pplawait.h>
+#include <experimental\resumable>
+#include <ppltasks.h>
 #include "RiffReader.h"
+#include "DataStructures\AudioSample.h"
 
 using namespace Microsoft::WRL;
 using namespace Windows::Storage::Streams;
@@ -18,8 +21,10 @@ namespace SpatialSoundPlayer {
 		Windows::Foundation::IAsyncAction^ PlaySoundFromResourceAsync(String^ resourceName);
 
 	private:
+		
 		ComPtr<IXAudio2> xAudio;
-		task<IBuffer^> LoadData(String^ resourceName);
+		std::shared_ptr<AudioSample> LoadData(String^ resourceName);
+		byte * GetBufferByteAccess(IBuffer ^ buffer);
 		IXAudio2MasteringVoice* masteringVoice;
 
 		void InternalPlaySound(String^ resourceName);

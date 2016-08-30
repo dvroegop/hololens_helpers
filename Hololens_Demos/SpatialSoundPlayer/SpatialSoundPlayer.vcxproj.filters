@@ -10,6 +10,7 @@
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="SpatialAudioPlayer.cpp" />
     <ClCompile Include="RiffReader.cpp" />
+    <ClCompile Include="DataStructures\AudioSample.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />

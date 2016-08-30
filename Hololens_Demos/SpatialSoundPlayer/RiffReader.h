@@ -11,12 +11,12 @@ namespace SpatialSoundPlayer {
 	class RiffReader sealed
 	{
 	private:
-		ChunkInfo FindChunk(IBuffer^ buffer, uint32 chunkId);
-		byte* GetBufferByteAccess(IBuffer^ buffer);
+		ChunkInfo FindChunk(byte* buffer, int bufferSize, uint32 chunkId);
+		
 
 	public:
 		RiffReader();
-		AudioData Read(IBuffer^ buffer);
+		AudioData Read(byte* buffer, int bufferSize);
 	};
 }
 

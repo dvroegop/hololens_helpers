@@ -6,10 +6,11 @@
 using namespace SpatialSoundPlayer;
 
 
-ChunkInfo RiffReader::FindChunk(IBuffer ^ buffer, uint32 chunkId)
+ChunkInfo RiffReader::FindChunk(byte*buffer, int bufferSize, uint32 chunkId)
 {
-	byte* ptr = GetBufferByteAccess(buffer);
-	byte* endPtr = ptr + (sizeof(byte) * (buffer->Length));
+	auto ptr = buffer;
+
+	byte* endPtr = ptr + (sizeof(byte) * bufferSize);
 
 	ChunkInfo info;
 
@@ -37,21 +38,7 @@ ChunkInfo RiffReader::FindChunk(IBuffer ^ buffer, uint32 chunkId)
 	return info;
 }
 
-byte * RiffReader::GetBufferByteAccess(IBuffer ^ buffer)
-{
-	Object^ obj = buffer;
 
-	ComPtr<IInspectable> insp(reinterpret_cast<IInspectable*>(obj));
-	ComPtr<IBufferByteAccess> bufferByteAccess;
-
-	insp.As(&bufferByteAccess);
-
-	byte* pixels = nullptr;
-
-	bufferByteAccess->Buffer(&pixels);
-
-	return pixels;
-}
 
 
 
@@ -59,10 +46,11 @@ RiffReader::RiffReader()
 {
 }
 
-AudioData RiffReader::Read(IBuffer ^ buffer)
+AudioData RiffReader::Read(byte* buffer, int bufferSize)
 {
-	auto formatChunk = FindChunk(buffer, fourccFMT);
-	auto dataChunk = FindChunk(buffer, fourccDATA);
+	
+	auto formatChunk = FindChunk(buffer, fourccFMT, bufferSize);
+	auto dataChunk = FindChunk(buffer, fourccDATA, bufferSize);
 
 	auto waveFormat = reinterpret_cast<WAVEFORMATEX*>(formatChunk.data);
 

@@ -1,10 +1,11 @@
 #include "pch.h"
 #include "SpatialAudioPlayer.h"
 #include <comutil.h>
+#include <robuffer.h>
+
 
 using namespace concurrency;
-using namespace Windows::Foundation;
-using namespace Windows::Storage;
+
 
 
 namespace SpatialSoundPlayer {
@@ -27,8 +28,8 @@ namespace SpatialSoundPlayer {
 
 	}
 
-	IAsyncAction^ SpatialAudioPlayer::PlaySoundFromResourceAsync(String^ resourceName)
-	{
+	Windows::Foundation::IAsyncAction^ SpatialAudioPlayer::PlaySoundFromResourceAsync(String^ resourceName)
+	{		
 		return create_async([this, resourceName]
 		{
 			InternalPlaySound(resourceName);
@@ -36,16 +37,14 @@ namespace SpatialSoundPlayer {
 	}
 
 	void SpatialAudioPlayer::InternalPlaySound(String^ resourceName) {
-		//auto buffer = this->LoadData(resourceName).then([this, buffer]() {
-		//	
-		//auto reader = new RiffReader();
-		//auto data = reader->Read(buffer);
+		std::shared_ptr<AudioSample> sample = create_task(LoadData(resourceName)).then();
+	
+		auto reader = new RiffReader();
+		auto data = reader->Read(sample->buffer, sample->bufferSize);
 
-		//IXAudio2SourceVoice* voice = this->CreateVoice(data.waveFormat);
-		//XAUDIO2_BUFFER audioBuffer = this->CreateAudioBuffer(data);
-		//HRESULT hr = voice->SubmitSourceBuffer(&audioBuffer);
-		//});
-
+		IXAudio2SourceVoice* voice = CreateVoice(data.waveFormat);
+		XAUDIO2_BUFFER audioBuffer = CreateAudioBuffer(data);
+		HRESULT hr = voice->SubmitSourceBuffer(&audioBuffer);
 	}
 
 	IXAudio2SourceVoice * SpatialAudioPlayer::CreateVoice(WAVEFORMATEX * wavFormat)
@@ -69,16 +68,37 @@ namespace SpatialSoundPlayer {
 		return buffer;
 	}
 
-	task<IBuffer^> SpatialAudioPlayer::LoadData(String^ resourceName)
+	std::shared_ptr<AudioSample> SpatialAudioPlayer::LoadData(String^ resourceName)
 	{
+
 		auto uri = ref new Windows::Foundation::Uri(resourceName);
 
-		auto file = co_await StorageFile::GetFileFromApplicationUriAsync(uri);
-		if (nullptr == file)
-			return nullptr;
+		auto file = co_await Windows::Storage::StorageFile::GetFileFromApplicationUriAsync(uri);
+		//
+		//auto buffer = co_await Windows::Storage::FileIO::ReadBufferAsync(file);
 
-		IBuffer^ buffer = co_await FileIO::ReadBufferAsync(file);
-
-		return buffer;
+		//byte* resultingData = GetBufferByteAccess(buffer);
+		auto sample = std::make_shared<AudioSample>();
+		//sample->buffer = resultingData;
+		//sample->bufferSize = buffer->Length;
+		return sample;
 	}
+
+	byte * SpatialAudioPlayer::GetBufferByteAccess(IBuffer ^ buffer)
+	{
+		Object^ obj = buffer;
+
+		ComPtr<IInspectable> insp(reinterpret_cast<IInspectable*>(obj));
+		ComPtr<IBufferByteAccess> bufferByteAccess;
+
+		insp.As(&bufferByteAccess);
+
+		byte* soundData = nullptr;
+
+		bufferByteAccess->Buffer(&soundData);
+
+		return soundData;
+	}
+
+
 }
